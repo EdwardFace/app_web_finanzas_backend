@@ -146,7 +146,7 @@
   - **Archivos:**
     - `src/main/java/edward/com/finanzasbackend/auth/application/AuthService.java`
     - `src/test/java/edward/com/finanzasbackend/auth/application/AuthServiceTest.java`
-
+  - Revision: ya no se implementara OAuth2.0
 ---
 
 ## SECURITY
