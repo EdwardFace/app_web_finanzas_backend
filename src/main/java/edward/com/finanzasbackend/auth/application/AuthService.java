@@ -1,5 +1,6 @@
 package edward.com.finanzasbackend.auth.application;
 
+import edward.com.finanzasbackend.auth.api.dto.UserDetailsDao;
 import edward.com.finanzasbackend.auth.api.dto.*;
 import edward.com.finanzasbackend.auth.domain.*;
 import edward.com.finanzasbackend.auth.domain.exception.*;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -57,9 +59,22 @@ public class AuthService {
         vt.setExpiresAt(LocalDateTime.now().plusHours(24));
         verificationTokenRepository.save(vt);
 
-        emailService.sendVerificationEmail(user, tokenValue);
+        //emailService.sendVerificationEmail(user, tokenValue);
         return user.getId();
     }
+
+    @Transactional(readOnly = true)
+    public UserDetailsDao getUserDetails(String email){
+        Optional<User> user = userRepository.findByEmail(email);
+        if (user.isPresent()) {
+            UserDetailsDao userDetailsDao = new UserDetailsDao(
+                    user.get().getName(),user.get().getEmail(),user.get().getStatus()
+            );
+            return userDetailsDao;
+        }
+        return null;
+    }
+
 
     @Transactional
     public void verifyEmail(String token) {
