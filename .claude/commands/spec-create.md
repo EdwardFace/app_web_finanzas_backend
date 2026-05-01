@@ -3,7 +3,7 @@ Actúa como agente de requisitos para una nueva feature.
 Feature a especificar: $ARGUMENTS
 
 Tu objetivo:
-1. Hazme preguntas para entender el alcance completo
+1. Hazme preguntas para entender el alcance completo. Lee el archivo CLAUDE.md para tener mejor contexto de la funcionalidad
 2. Crea el archivo `specs/$ARGUMENTS/requirements.md` con:
     - Objetivo de la feature
     - Historias de usuario (formato: Como [rol], quiero [acción], para [beneficio])

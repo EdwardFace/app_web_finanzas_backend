@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.Map;
 
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class AuthExceptionHandler {
 
     @ExceptionHandler(EmailAlreadyExistsException.class)
     ResponseEntity<Map<String, String>> handleEmailExists(EmailAlreadyExistsException ex) {

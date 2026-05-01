@@ -59,7 +59,7 @@ public class AuthService {
         vt.setExpiresAt(LocalDateTime.now().plusHours(24));
         verificationTokenRepository.save(vt);
 
-        //emailService.sendVerificationEmail(user, tokenValue);
+        emailService.sendVerificationEmail(user, tokenValue);
         return user.getId();
     }
 
