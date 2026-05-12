@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: finanzasBackend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/finanzas
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: create-drop   # dev; cambiar a validate en prod
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USER}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope: email, profile
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}          # mínimo 256 bits para HS256
+    access-token-expiration: 900   # segundos (15 min)
+    refresh-token-expiration: 604800  # segundos (7 días)
+  frontend-url: ${FRONTEND_URL}  # para redirect OAuth2 y links de email
+server:
+  servlet:
+    context-path: /api/v1/

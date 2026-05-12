@@ -1,0 +1,22 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:16-alpine
+    environment:
+        - POSTGRES_USER=${DB_USER}
+        - POSTGRES_PASSWORD=${DB_PASSWORD}
+        - POSTGRES_DB=${DB_NAME}
+    ports:
+        - "5432:5432"
+    restart: always
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+    networks:
+       - postgresql_network
+
+volumes:
+  postgresql_data:
+    driver: local
+networks:
+  postgresql_network:
+    driver: bridge
